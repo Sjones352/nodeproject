@@ -7,7 +7,7 @@
  var server = http.createServer(function(req, res) {
  	console.log("Recieved request:" + res.url);
  	res.writeHead(200, {
- 		"Content-Type": "text/html"
+ 		"mimeType": "text/html"
  	});
  	console.log(req.method);
  	console.log(req.headers);
