@@ -20,7 +20,6 @@
      res.setHeader('Content-type', mimeType);
      res.end(html);
    });
-
  }
 
  function onRequest(req, res) {
@@ -51,7 +50,7 @@
 
      if (exists) {
        fs.readFile(filename, function(error, content) {
-        res.writeHead(200, {
+         res.writeHead(200, {
            'Content-type': mimeType
          });
          res.end(content, 'utf-8');
@@ -61,7 +60,6 @@
        send404Request(res);
      }
    });
-
  }
 
 
