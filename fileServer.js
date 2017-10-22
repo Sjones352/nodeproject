@@ -6,6 +6,8 @@
  var url = require('url');
  var rootDir = __dirname + '/public';
 
+ var err = 'The server encountered an unexpected condition which prevented it from fulfilling the request.';
+
  const mimeType = {
    'html': 'text/html',
    'jpeg': 'image/jpeg',
@@ -17,96 +19,69 @@
 
  function send404Request(res) {
    fs.readFile('public/404.html', 'UTF-8', function(err, html) {
-<<<<<<< HEAD
      if (err) {
        res.writeHead(500);
-       res.write("Internal Server Error");
+       res.write('Internal Server Error');
+       console.log(err);
      } else {
        res.writeHead(404, {
-         'Content-type': mimeType
+         'Content-type': 'text/html'
        });
        res.end(html);
      }
-=======
-     res.setHeader('Content-type', mimeType);
-     res.end(html);
->>>>>>> 945100f8f04e33242f280c0f03422c5c690fe44b
    });
  }
 
  function onRequest(req, res) {
-<<<<<<< HEAD
-   console.log('request starting....');
-=======
-   console.log('request starting...');
->>>>>>> 945100f8f04e33242f280c0f03422c5c690fe44b
+   console.log(`${req.method} ${req.url}`);
 
-   var filename;
-   var pathname = url.parse(req.url).pathname;
-   filename = path.join(rootDir, pathname);
-   console.log('Filename: ' + filename);
-<<<<<<< HEAD
+   var pathname = url.parse(req.url).path;
+
+   
+   var filename = path.join(rootDir, pathname);
+
+   var headers = {'Content-type': String(mimeType[path.extname 
+         (filename)])};
+
    var stream = fs.createReadStream(filename);
-=======
->>>>>>> 945100f8f04e33242f280c0f03422c5c690fe44b
 
    if (req.method !== 'GET') {
      res.writeHead(405, {
-       "Content-type": "text/plain"
+       "Content-type": 'text/plain'
      });
      res.write(`HTTP method ${req.method} not yet supported`);
      res.end();
-     return
+     return;
    }
 
    if (req.url === '/') {
-<<<<<<< HEAD
      fs.readFile('public/index.html', 'UTF-8', function(err, html) {
+
        if (err) {
          res.writeHead(500);
-         res.write("Internal Server Error");
+         res.write('Internal Server Error');
+         // console.log('status: ' + err);
        } else {
          res.writeHead(200, {
-           'Content-type': mimeType
+           'Content-Type': 'text/html'
          });
          res.end(html);
-         return
+         return;
        }
      });
    }
-
+ 
    stream.on('error', function(error) {
+    
 
      send404Request(res);
-   });
 
+   });
+   
    // if File exists, stream it to user
-   res.writeHead(200);
+    res.writeHead(200,  headers );
    stream.pipe(res);
  };
-=======
-     res.writeHead(200, {
-       'Content-type': mimeType
-     });
-     fs.createReadStream('public/index.html').pipe(res);
-   }
-
-   fs.exists(filename, function(exists) {
-
-     if (exists) {
-       fs.readFile(filename, function(error, content) {
-         res.writeHead(200, {
-           'Content-type': mimeType
-         });
-         res.end(content, 'utf-8');
-
-       });
-     } else {
-       send404Request(res);
-     }
-   });
- }
->>>>>>> 945100f8f04e33242f280c0f03422c5c690fe44b
 
 
  http.createServer(onRequest).listen(3000);
