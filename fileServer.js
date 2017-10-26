@@ -6,8 +6,6 @@
  var url = require('url');
  var rootDir = __dirname + '/public';
 
- var err = 'The server encountered an unexpected condition which prevented it from fulfilling the request.';
-
  const mimeType = {
    'html': 'text/html',
    'jpeg': 'image/jpeg',
@@ -17,12 +15,18 @@
    'css': 'text/css'
  };
 
+ function generate500error(res, errorMessage) {
+   if (errorMessage === 'Internal Server Error') {
+     res.writeHead(500);
+     res.write(`We encounted an ${errorMessage} and will not run`);
+     return;
+   }
+ }
+
  function send404Request(res) {
    fs.readFile('public/404.html', 'UTF-8', function(err, html) {
      if (err) {
-       res.writeHead(500);
-       res.write('Internal Server Error');
-       console.log(err);
+       generate500error(errorMessage);
      } else {
        res.writeHead(404, {
          'Content-type': 'text/html'
@@ -37,13 +41,16 @@
 
    var pathname = url.parse(req.url).path;
 
-   
-   var filename = path.join(rootDir, pathname);
 
-   var headers = {'Content-type': String(mimeType[path.extname 
-         (filename)])};
+   var fileName = path.join(rootDir, pathname);
 
-   var stream = fs.createReadStream(filename);
+   // Used path.extname(path) method
+   var headers = {
+     'Content-type': mimeType[path.extname(fileName).split(".").pop()]
+   };
+
+
+   var stream = fs.createReadStream(fileName);
 
    if (req.method !== 'GET') {
      res.writeHead(405, {
@@ -58,28 +65,23 @@
      fs.readFile('public/index.html', 'UTF-8', function(err, html) {
 
        if (err) {
-         res.writeHead(500);
-         res.write('Internal Server Error');
-         // console.log('status: ' + err);
+         generate500error(errorMessage);
        } else {
-         res.writeHead(200, {
-           'Content-Type': 'text/html'
-         });
+         res.writeHead(200, headers);
          res.end(html);
          return;
        }
      });
    }
- 
+
    stream.on('error', function(error) {
-    
-
-     send404Request(res);
-
+     if (error) {
+       send404Request(res);
+     }
    });
-   
+
    // if File exists, stream it to user
-    res.writeHead(200,  headers );
+   res.writeHead(200, headers);
    stream.pipe(res);
  };
 
