@@ -17,10 +17,10 @@
 
  function generate500error(response, errorMessage) {
    response.writeHead(500, {
-     "Content-Type": "text/plain"
+     "Content-Type": "text/html"
    });
 
-   response.write(`Server cannot process the request: ${errorMessage}`);
+   response.write(`<h1>Server cannot process the request: ${errorMessage}</h1>`);
    // Log the error message for the opearations people
    console.log(`Server cannot process the request: ${errorMessage}`);
    // Show which function called us and which file and LINE the call was made from
