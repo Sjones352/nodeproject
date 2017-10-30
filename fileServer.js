@@ -16,7 +16,9 @@
  };
 
  function generate500error(response, errorMessage) {
-   response.writeHead(500, {"Content-Type": "text/plain"});
+   response.writeHead(500, {
+     "Content-Type": "text/plain"
+   });
 
    response.write(`Server cannot process the request: ${errorMessage}`);
    // Log the error message for the opearations people
@@ -48,8 +50,16 @@
 
    // Used path.extname(path) method
    var headers = {
-     'Content-type': String(mimeType[path.extname(fileName).split(".").pop()]
-   )};
+     'Content-type': String(mimeType[path.extname(fileName).split(".").pop()])
+   };
+
+
+   var fileName = path.join(rootDir, pathname);
+
+   // Used path.extname(path) method
+   var headers = {
+     'Content-type': String(mimeType[path.extname(fileName).split(".").pop()])
+   };
 
    var stream = fs.createReadStream(fileName);
 
@@ -67,6 +77,7 @@
 
        if (err) {
          generate500error(response);
+
        } else {
          response.writeHead(200, headers);
          response.end(html);
@@ -84,6 +95,7 @@
    // if File exists, stream it to user
    response.writeHead(200, headers);
    stream.pipe(response);
+
  };
 
 
