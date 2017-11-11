@@ -73,11 +73,14 @@ function onRequest(request, response) {
     fs.readFile('public/index.html', 'UTF-8', function(error, html) {
 
       if (error) {
-
-        setTimeout(function() {
-          console.log("File timed out");
-        }, 500);
-
+        var timeout = setTimeout(function() {
+        console.log("Sending 504 error to client: Server Timeout");
+        response.writeHead(504, {
+          'Content-Type': 'text/plain'
+        });
+        response.write(`Sending 504 error to client :Server Timeout`);
+        response.end();
+    }, 500);
 
       } else {
         response.writeHead(200, headers);
@@ -89,7 +92,7 @@ function onRequest(request, response) {
 
   stream.on('error', function(error) {
     if (error) {
-      send404Request(response);
+      return send404Request(response);
     }
   });
 
