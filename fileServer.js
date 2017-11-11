@@ -10,31 +10,33 @@ const mimeType = {
   'jpg': 'image/jpeg',
   'png': 'image/png',
   'js': 'text/javascript',
-  'css': 'text/css'
+  'css': 'text/css',
+  'svg': 'image/svg+xml',
+  'ico': 'image/x-icon',
+  'gif': 'image/gif',
 };
 
-function generate500error(response, errorMessage) {
-
-  Error.captureStackTrace(this, generate500error);
+function generate500error(response) {
   var err = new Error();
-  response.writeHead(500, {
-    'Content-Type': 'text/html'
+  fs.readFile('public/500.html', 'UTF-8', function(error, html) {
+    if (error) {
+      throw err;
+    }
+    response.writeHead(500, {
+      'Content-Type': 'text/html'
+    });
+    console.log(`Server cannot process the request: 500 internal error`);
+
+    console.error(err.stack);
+    response.end(html);
+    return;
   });
-
-  response.write(`<h1>Server cannot process the request: ${errorMessage}</h1>`);
-  // Log the error message for the opearations people
-  console.log(`Server cannot process the request: ${errorMessage}`);
-  // Show which function called us and which file and LINE the call was made from
-  console.error(err.stack);
-  response.end();
-  return;
 }
-
 
 function send404Request(response) {
   fs.readFile('public/404.html', 'UTF-8', function(error, html) {
     if (error) {
-      generate500error(response, '500 Internal Server Error');
+      generate500error(response);
     } else {
       response.writeHead(404, {
         'Content-type': 'text/html'
@@ -71,7 +73,11 @@ function onRequest(request, response) {
     fs.readFile('public/index.html', 'UTF-8', function(error, html) {
 
       if (error) {
-        generate500error(response);
+
+        setTimeout(function() {
+          console.log("File timed out");
+        }, 500);
+
 
       } else {
         response.writeHead(200, headers);
