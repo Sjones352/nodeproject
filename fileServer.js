@@ -16,27 +16,34 @@ const mimeType = {
   'gif': 'image/gif',
 };
 
-function generate500error(response) {
-  var err = new Error();
-  fs.readFile('public/500.html', 'UTF-8', function(error, html) {
-    if (error) {
-      throw err;
-    }
-    response.writeHead(500, {
-      'Content-Type': 'text/html'
-    });
-    console.log(`Server cannot process the request: 500 internal error`);
 
-    console.error(err.stack);
-    response.end(html);
+function generate500error(error, response) {
+  fs.readFile('public/500.html', 'UTF-8', function(fsError, html) {
+    if (fsError) {
+      error = fsError;
+    }
+
+    console.error(`generate500error: ` + error.message + ' ' + error.stack);
+
+    if (response) {    
+      response.writeHead(500, {
+        'Content-Type': 'text/html'
+      });
+
+      var content = (html == undefined) ? '<h1>Internal Server Error: ' + error.message + '<h1>' : html
+      response.end(html);
+    }
+
     return;
   });
 }
 
 function send404Request(response) {
-  fs.readFile('public/404.html', 'UTF-8', function(error, html) {
-    if (error) {
-      generate500error(response);
+  fs.readFile('public/404.html', 'UTF-8', function(readError, html) {
+    if (readError) {
+      var error = new Error();
+      error.message = readError.message;
+      generate500error(error, response);
     } else {
       response.writeHead(404, {
         'Content-type': 'text/html'
@@ -73,14 +80,15 @@ function onRequest(request, response) {
     fs.readFile('public/index.html', 'UTF-8', function(error, html) {
 
       if (error) {
+
         var timeout = setTimeout(function() {
-        console.log("Sending 504 error to client: Server Timeout");
-        response.writeHead(504, {
-          'Content-Type': 'text/plain'
-        });
-        response.write(`Sending 504 error to client :Server Timeout`);
-        response.end();
-    }, 500);
+          console.log("Sending 504 error to client: Server Timeout");
+          response.writeHead(504, {
+            'Content-Type': 'text/plain'
+          });
+          response.write(`Sending 504 error to client :Server Timeout`);
+          response.end();
+        }, 500);
 
       } else {
         response.writeHead(200, headers);
@@ -92,6 +100,7 @@ function onRequest(request, response) {
 
   stream.on('error', function(error) {
     if (error) {
+      console.error(error.message);
       return send404Request(response);
     }
   });
