@@ -25,7 +25,7 @@ function generate500error(error, response) {
 
     console.error(`generate500error: ` + error.message + ' ' + error.stack);
 
-    if (response) {    
+    if (response) {
       response.writeHead(500, {
         'Content-Type': 'text/html'
       });
@@ -52,6 +52,7 @@ function send404Request(response) {
     }
   });
 }
+
 
 function onRequest(request, response) {
   console.log(`${request.method} ${request.url}`);
@@ -80,7 +81,6 @@ function onRequest(request, response) {
     fs.readFile('public/index.html', 'UTF-8', function(error, html) {
 
       if (error) {
-
         var timeout = setTimeout(function() {
           console.log("Sending 504 error to client: Server Timeout");
           response.writeHead(504, {
