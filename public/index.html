@@ -1,22 +1,29 @@
 <html>
-<head>
+<head">
   <title>Index</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" >
+    <script type="text/javascript" src="validation.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="functions_javascript.js"></script>
+  <script type="text/javascript">
+   function myLoad(){
+    alert("Hello from core javascript!");
+    }
+  window.onload=myLoad();
+  </script>
  </head>
 
- <body  onload="myFunction()">
-  <div class="city">
-  <h1>Hello Sandra </h1>
-  <picture>
-    <img src="image/pic.jpg"  alt="kids"/>
-  </picture>
-
-  <br>
-  <div>
-   <img class='monument' src="image/monument.jpg" alt="dc">
-  <div> 
-  </div>
+<body>
+<div class="city">
+<div class="container">
+<h1 class="text-center">Login</h1>       
+<form name="loginForm" class='form' onsubmit="return validateForm()" >
+  <label><b>Username</b></label>
+   <input class="text" id="username" name="username" placeholder="Username" required>
+  <label><b>Password</b></label>
+   <input  class="text" id="password" name="password" placeholder="password" required>
+  <button class="button button-border" type="submit">Login</button>
+  <input type="checkbox" checked="checked"> Remember me
+</form>
+</div>
  </body>
 </html>

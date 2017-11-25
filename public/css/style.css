@@ -9,7 +9,6 @@ p {
 }
 
 .city {
-  background-color: tomato;
   color: white;
   padding: 10px;
 } 
@@ -17,4 +16,55 @@ p {
 .monument {
   width: 250px;
   height: 300px;
+}
+
+.form {
+    border: 3px;
+    color: black;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.container {
+    padding: 16px;
+    width: 50%;
+    top: 40%;
+    left: 40%;
+    margin-top: -150px;
+    margin-left: -150px;
+    position: absolute;
+    border: 3px solid #f1f1f1;
+}
+
+.text {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.button {
+    background-color: #f68b1f;
+    color: white;
+    padding: 1rem 2rem;
+    border-color: transparent;
+    cursor: pointer;
+    width: 36%;
+    margin: 0 0.6rem 1rem 0
+}
+
+/* Add a hover effect for buttons */
+.button:hover {
+    opacity: 0.8;
+}
+
+.button-border {
+    line-height: 1;
+    outline: none;
+    font-family: Source Sans Pro; 
+
 }
