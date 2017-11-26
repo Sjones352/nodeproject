@@ -1,14 +1,15 @@
 <html>
 <head">
   <title>Index</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" >
+   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" >
     <script type="text/javascript" src="validation.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	 <link rel="stylesheet" type="text/css" href="css/style.css">
   <script type="text/javascript">
-   function myLoad(){
-    alert("Hello from core javascript!");
-    }
-  window.onload=myLoad();
+   function myLoad() {
+     alert("Hello from core javascript");
+   }
+   // window.onload = myLoad; // Gets passed an Event object
+   window.addEventListener("load", myLoad);
   </script>
  </head>
 
@@ -16,11 +17,11 @@
 <div class="city">
 <div class="container">
 <h1 class="text-center">Login</h1>       
-<form name="loginForm" class='form' onsubmit="return validateForm()" >
+<form name="loginForm" class='form' onsubmit="validateForm(); return false;" >
   <label><b>Username</b></label>
-   <input class="text" id="username" name="username" placeholder="Username" required>
+   <input class="text" id="username" name="username" placeholder="Username">
   <label><b>Password</b></label>
-   <input  class="text" id="password" name="password" placeholder="password" required>
+   <input  class="text" id="password" name="password" placeholder="password">
   <button class="button button-border" type="submit">Login</button>
   <input type="checkbox" checked="checked"> Remember me
 </form>

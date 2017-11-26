@@ -19,5 +19,12 @@ function validateForm() {
 		window.alert("Login accepted. Welcome");
 		return true;
 	}
+
+
+	if (username.value == "sandra@example.com" && password.value !== "letmein") {
+		window.alert("Invalid credentials");
+		return true;
+	}
+
 	return true;
 }
