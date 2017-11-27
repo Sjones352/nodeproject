@@ -68,3 +68,8 @@ p {
     font-family: Source Sans Pro; 
 
 }
+
+.val_error {
+   color: red;
+   text-align:center;
+}
