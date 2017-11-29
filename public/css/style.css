@@ -73,3 +73,11 @@ p {
    color: red;
    text-align:center;
 }
+
+.time {
+    font-weight: bold;
+    color: black;
+    float: right;
+    padding: 10px 15px 9px 15px !important;
+}
+}
