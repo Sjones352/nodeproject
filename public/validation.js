@@ -1,5 +1,13 @@
 'use strict';
 
+function myLoad() {
+	var now = new Date();
+	var time = document.getElementById("time");
+	time.textContent = "Welcome, it is now " + now.toLocaleTimeString()
+
+}
+window.addEventListener("load", myLoad);
+
 function validateForm() {
 
 	var username = document.loginForm.username;
@@ -7,9 +15,6 @@ function validateForm() {
 	var username_error = document.getElementById("username_error");
 	var password_error = document.getElementById("password_error");
 	var time = document.getElementById("time");
-	// var now  = new Date();
-
-	// time.textContent = "Welcome, it is now " +  now.toLocaleTimeString();
 
 	if (username.value == "") {
 		username.style.border = "1px solid red";
@@ -35,5 +40,5 @@ function validateForm() {
 		return true;
 	}
 
-	return true;
+	return false;
 }

@@ -1,44 +1,31 @@
-  <html>
-  <head">
+<html>
+<head ">
   <title>Index</title>
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" >
-  <script type="text/javascript" src="validation.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="shortcut icon " type="image/x-icon " href="favicon.ico " >
+  <script type="text/javascript " src="validation.js "></script>
+  <link rel="stylesheet " type="text/css " href="css/style.css ">
 
   </head>
-
   <body>
     
-    <div id='city' class="city">
-      <div id='time' class='time'>
-      <script type="text/javascript">
-  function myLoad() {
-    var now  = new Date(); 
-    var time = document.getElementById("time");
-    time.textContent = "Welcome, it is now " +  now.toLocaleTimeString()
-
-   }
-     // window.onload = myLoad; // Gets passed an Event object
-     window.addEventListener("load", myLoad);
-   </script>
-   
-      </div>
-      <div class="container">
-        <h1 class="text-center">Login</h1>       
-        <form name="loginForm" class='form' onsubmit="validateForm(); return false;" >
+    <div id='city' class="city ">
+      <div id='time' class='time'></div>
+      <div class="container ">
+        <h1 class="text-center ">Login</h1>       
+        <form name="loginForm " class='form' onsubmit="validateForm(); return false; " >
           <div>
             <label><b>Username</b></label>
-            <input class="text" id="username" name="username" placeholder="Username">
-            <div id="username_error" class="val_error"></div>
+            <input class="text " id="username " name="username " placeholder="Username ">
+            <div id="username_error " class="val_error "></div>
           </div>
           <div>
             <label><b>Password</b></label>
-            <input  class="text" id="password" name="password" placeholder="password">
-            <div id="password_error" class="val_error"></div>
+            <input  class="text " id="password " name="password " placeholder="password ">
+            <div id="password_error " class="val_error "></div>
           </div>
           <div>
-            <button class="button button-border" type="submit">Login</button>
-            <input type="checkbox" checked="checked"> Remember me
+            <button class="button button-border " type="submit ">Login</button>
+            <input type="checkbox " checked="checked "> Remember me
           </div>
         </form>
       </div>
