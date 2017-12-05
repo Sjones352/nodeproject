@@ -8,6 +8,7 @@ function myLoad() {
 }
 window.addEventListener("load", myLoad);
 
+
 function validateForm() {
 
 	var username = document.loginForm.username;
@@ -40,5 +41,5 @@ function validateForm() {
 		return true;
 	}
 
-	return false;
+	return true;
 }
