@@ -17,24 +17,29 @@ function validateForm() {
 	var password_error = document.getElementById("password_error");
 	var time = document.getElementById("time");
 
-	if (username.value == "") {
+	if (username.value === "") {
 		username.style.border = "1px solid red";
 		username_error.textContent = "Username is required";
 		username.focus();
 		return false;
+	} else {
+	    username_error.textContent = "";
 	}
 
-	if (password.value == "") {
+	if (password.value === "") {
 		password.style.border = "1px solid red";
 		password_error.textContent = "password is required";
 		password.focus();
 		return false;
+	} else {
+		password_error.textContent = "";
 	}
 
-	if (username.value == "sandra@example.com" && password.value == "letmein") {
+
+	if (username.value === "sandra@example.com" && password.value === "letmein") {
 		time.innerHTML = "Welcome, Sandra";
 		time.focus();
-	} else if (username.value == "sandra@example.com" && password.value !== "letmein") {
+	} else {
 		password.style.border = "1px solid red";
 		password_error.innerHTML = "Invalid credentials";
 		password.focus();
