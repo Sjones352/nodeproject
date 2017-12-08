@@ -1,21 +1,22 @@
-'use strict';
+"use strict";
+
+var time = setInterval(myLoad, 1000);
 
 function myLoad() {
 	var now = new Date();
 	var time = document.getElementById("time");
-	time.textContent = "Welcome, it is now " + now.toLocaleTimeString()
-
+	time.textContent = "Welcome, it is now " + now.toLocaleTimeString();
 }
 window.addEventListener("load", myLoad);
 
-
-function validateForm() {
-
+function validateForm(event) {
 	var username = document.loginForm.username;
 	var password = document.loginForm.password;
 	var username_error = document.getElementById("username_error");
 	var password_error = document.getElementById("password_error");
 	var time = document.getElementById("time");
+	var hide = document.getElementById('hide');
+	var text = document.getElementById('form');
 
 	if (username.value === "") {
 		username.style.border = "1px solid red";
@@ -23,7 +24,7 @@ function validateForm() {
 		username.focus();
 		return false;
 	} else {
-	    username_error.textContent = "";
+		username_error.textContent = "";
 	}
 
 	if (password.value === "") {
@@ -35,9 +36,9 @@ function validateForm() {
 		password_error.textContent = "";
 	}
 
-
-	if (username.value === "sandra@example.com" && password.value === "letmein") {
-		time.innerHTML = "Welcome, Sandra";
+	if ( username.value === "sandra@example.com" && password.value === "letmein") {
+		hide.style.visibility = 'hidden';
+		time.innerHTMl = "Welcome, Sandra";
 		time.focus();
 	} else {
 		password.style.border = "1px solid red";
@@ -48,3 +49,9 @@ function validateForm() {
 
 	return true;
 }
+
+// var form = document.getElementById('myForm');
+//  if(form) {
+//     addEventListener('submit', validateForm, false)
+
+//   }
