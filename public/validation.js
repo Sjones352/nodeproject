@@ -9,14 +9,13 @@ function myLoad() {
 }
 window.addEventListener("load", myLoad);
 
-function validateForm(event) {
+function validateForm() {
 	var username = document.loginForm.username;
 	var password = document.loginForm.password;
 	var username_error = document.getElementById("username_error");
 	var password_error = document.getElementById("password_error");
 	var time = document.getElementById("time");
 	var hide = document.getElementById('hide');
-	var text = document.getElementById('form');
 
 	if (username.value === "") {
 		username.style.border = "1px solid red";
@@ -36,18 +35,19 @@ function validateForm(event) {
 		password_error.textContent = "";
 	}
 
-	if ( username.value === "sandra@example.com" && password.value === "letmein") {
-		hide.style.visibility = 'hidden';
-		time.innerHTMl = "Welcome, Sandra";
-		time.focus();
-	} else {
-		password.style.border = "1px solid red";
-		password_error.innerHTML = "Invalid credentials";
-		password.focus();
-		return true;
-	}
 
-	return true;
+  if (username.value === "sandra@example.com" && password.value === "letmein") {
+        hide.style.visibility = 'visible';
+        hide.innerHTML = '<p>Hello Sandra Jones</p>';
+        
+    } else {
+        password.style.border = "1px solid red";
+        password_error.innerHTML = "Invalid credentials";
+        password.focus();
+        return true;
+    }
+
+    return true;
 }
 
 // var form = document.getElementById('myForm');
