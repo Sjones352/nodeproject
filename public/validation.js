@@ -1,13 +1,13 @@
 "use strict";
 
-var time = setInterval(myLoad, 1000);
+var clock = setInterval(setTime, 1000);
 
-function myLoad() {
+function setTime() {
 	var now = new Date();
 	var time = document.getElementById("time");
 	time.textContent = "Welcome, it is now " + now.toLocaleTimeString();
 }
-window.addEventListener("load", myLoad);
+window.addEventListener("load", setTime);
 
 function validateForm() {
 	var username = document.loginForm.username;
@@ -16,6 +16,7 @@ function validateForm() {
 	var password_error = document.getElementById("password_error");
 	var time = document.getElementById("time");
 	var hide = document.getElementById('hide');
+	var form = document.getElementById('form1');
 
 	if (username.value === "") {
 		username.style.border = "1px solid red";
@@ -38,8 +39,7 @@ function validateForm() {
 
   if (username.value === "sandra@example.com" && password.value === "letmein") {
         hide.style.visibility = 'visible';
-        hide.innerHTML = '<p>Hello Sandra Jones</p>';
-        
+               
     } else {
         password.style.border = "1px solid red";
         password_error.innerHTML = "Invalid credentials";
@@ -49,9 +49,3 @@ function validateForm() {
 
     return true;
 }
-
-// var form = document.getElementById('myForm');
-//  if(form) {
-//     addEventListener('submit', validateForm, false)
-
-//   }
