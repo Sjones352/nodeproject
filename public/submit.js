@@ -1,36 +1,26 @@
-"use strict";
-
-var clock = setInterval(setTime, 1000);
-
-
-function setTime() {
-  var now = new Date();
-  var time = document.getElementById("time");
-  time.textContent = "Welcome, it is now " + now.toLocaleTimeString();
-}
-window.addEventListener("load", setTime);
-
-function validateForm() {
+<script>
+  var form = document.getElementById("myForm");
+  form.addEventListener('submit', function(evt) {
   var username = document.loginForm.username;
   var password = document.loginForm.password;
   var username_error = document.getElementById("username_error");
   var password_error = document.getElementById("password_error");
   var time = document.getElementById("time");
   var hide = document.getElementById('hide');
-  var form = document.getElementById('content');
 
-
-
-  if (username.value === "") {
+    if (username.value === "") {
+    evt.preventDefault();
     username.style.border = "1px solid red";
     username_error.textContent = "Username is required";
     username.focus();
+    console.log('Form submission cancelled.');
     return false;
   } else {
     username_error.textContent = "";
   }
 
   if (password.value === "") {
+    evt.preventDefault();
     password.style.border = "1px solid red";
     password_error.textContent = "password is required";
     password.focus();
@@ -41,23 +31,17 @@ function validateForm() {
 
 
   if (username.value === "sandra@example.com" && password.value === "letmein") {
-    form.style.visibility = 'hidden';
-    hide.style.display = "block";
+    evt.preventDefault();
+        hide.style.visibility = 'visible';
+               
+    } else {
 
-  } else {
-    password.style.border = "1px solid red";
-    password_error.innerHTML = "Invalid credentials";
-    password.focus();
-    return true;
-  }
+        password.style.border = "1px solid red";
+        password_error.innerHTML = "Invalid credentials";
+        password.focus();
+        return true;
+    } 
+  
+});
 
-  return true;
-}
-
-function showLogin() {
-  if (document.getElementById('btn').click === true) {
-    document.getElementById('myForm').style.display = 'block';
-    console.log('U FOOL');
-    return true;
-  }
-}
+    </script>
