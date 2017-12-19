@@ -54,10 +54,3 @@ function validateForm() {
   return true;
 }
 
-function showLogin() {
-  if (document.getElementById('btn').click === true) {
-    document.getElementById('myForm').style.display = 'block';
-    console.log('U FOOL');
-    return true;
-  }
-}
