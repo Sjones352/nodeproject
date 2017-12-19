@@ -8,9 +8,25 @@ function setTime() {
   var time = document.getElementById("time");
   time.textContent = "Welcome, it is now " + now.toLocaleTimeString();
 }
-window.addEventListener("load", setTime);
 
-function validateForm() {
+// This will only be called once the HTML is fully read by the browser
+// and the document object model (DOM) representation of the page exists
+// in memory.
+window.addEventListener("load", function() {
+
+  setTime();
+  
+  document.getElementById("myform").addEventListener('submit', validateForm, false);
+
+  document.getElementById("btn").addEventListener("click", function( event ) {
+    document.getElementById("hide").style.display = 'none';
+    document.getElementById('myform').style.visibility = 'visible';
+  }, false);
+
+  return true;
+});
+
+function validateForm(evt) {
   var username = document.loginForm.username;
   var password = document.loginForm.password;
   var username_error = document.getElementById("username_error");
@@ -19,7 +35,7 @@ function validateForm() {
   var hide = document.getElementById('hide');
   var form = document.getElementById('content');
 
-
+  evt.preventDefault();
 
   if (username.value === "") {
     username.style.border = "1px solid red";
