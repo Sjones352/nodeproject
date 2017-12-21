@@ -33,7 +33,7 @@ p {
     top: 40%;
     left: 40%;
     margin-top: -150px;
-    margin-left: -150px;
+    margin-left: -200px;
     position: absolute;
     border: 3px solid #f1f1f1;
 }
@@ -53,8 +53,11 @@ p {
     padding: 1rem 2rem;
     border-color: transparent;
     cursor: pointer;
-    width: 36%;
-    margin: 0 0.6rem 1rem 0
+    width: auto;
+    margin: 0.6rem 0.6rem 1rem 0;
+    font-weight: 700;
+    text-align: center;
+    display: inline-block;
 }
 
 /* Add a hover effect for buttons */
@@ -67,4 +70,32 @@ p {
     outline: none;
     font-family: Source Sans Pro; 
 
+}
+
+.val_error {
+   color: red;
+   text-align:center;
+}
+
+.time {
+  font-weight: bold;
+  color: black;
+  float: right;
+  padding: 10px 15px 9px 15px !important;
+}
+
+.hidden {
+  display: none;
+  padding: 1em;
+  background-color: #e7f4e4;
+  
+}
+
+.center {
+  text-align:center;
+  font-weight: 700;
+  color: black;
+  font-size: 4rem;
+  margin-top: .3rem;
+  margin-bottom: .3rem;
 }
