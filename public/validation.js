@@ -6,13 +6,12 @@ function setTime() {
   $("#time").html("Welcome, it is now " + time);
 }
 
-$(window).on('load', function() {
+$(document).ready(function() {
   var clock = setInterval(setTime, 1000);
 
   $('#myform').submit(function(evt) {
     var username = $('#username').val();
     var password = $('#password').val();
-
 
     evt.preventDefault();
 
@@ -33,7 +32,6 @@ $(window).on('load', function() {
     } else {
       $('#password_error').text("");
     }
-
 
     if (username === "sandra@example.com" && password === "letmein") {
       $('#content').hide();
