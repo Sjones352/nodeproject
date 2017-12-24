@@ -6,7 +6,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="validation.js"></script>
+    <script type="text/javascript" src="js/validation.js"></script>
 </head>
 
 <body>
@@ -37,5 +37,23 @@
         </div>
     </div>
 </body>
+<script>
+    // $.getJSON('js/credentials.json', function(data) {
+    //   console.log(data);
+    // });
 
+    $.ajax({
+      url: 'js/credentials.json',
+      dataType: 'json',
+      contentType: "application/json; charset=utf-8",
+      type: 'get',
+      cache: true,
+      success: function(data) {
+        $(data.credentials).each(function(index, value) {
+          console.log(value.messages[2]);
+
+        });
+      }
+    });
+</script>
 </html>
