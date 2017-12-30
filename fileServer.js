@@ -13,8 +13,7 @@ const mimeType = {
   'css': 'text/css',
   'svg': 'image/svg+xml',
   'ico': 'image/x-icon',
-  'gif': 'image/gif',
-  'json': 'application/json'
+  'gif': 'image/gif'
 };
 
 
