@@ -1,6 +1,6 @@
 'use strict';
 
-function setTime() {
+function setViewTime() {
   var now = new Date();
   var time = now.toLocaleTimeString();
   $('#time').html('Welcome, it is now ' + time);
@@ -39,12 +39,12 @@ function loginToAccount() {
       dataType: 'json',
       type: 'GET',
       cache: true,
-      success: function(isLoggedIn) {
-        $.each(isLoggedIn, function(index, login) {
+      success: function(response) {
+        $.each(response, function(index, login) {
           console.log(login.username);
           if (username === login.username && password === login.password) {
-            $('#content').hide(isLoggedIn);
-            $('#hide').show(isLoggedIn);
+            $('#content').hide(response);
+            $('#welcome').show(response);
             return true;
           } else {
             $('#password_error').text(login.invalidLoginErrorMessage);
@@ -58,20 +58,17 @@ function loginToAccount() {
 
 
 $(document).ready(function() {
-  setInterval(setTime, 1000);
+  setInterval(setViewTime, 1000);
 
   $('#loginform').submit(function(evt) {
-
     evt.preventDefault();
-
     validateLoginForm()
-
     loginToAccount();
 
   });
 
   $('#logout').click(function() {
-    $('#hide').hide();
+    $('#welcome').hide();
     $('#content').show();
   });
 
