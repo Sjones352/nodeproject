@@ -1,21 +1,13 @@
 body {
-  background-color: powderblue;
+    background-color: powderblue;
 }
+
 h1 {
-  color: blue;
+    color: blue;
 }
+
 p {
-  color: red;
-}
-
-.city {
-  color: white;
-  padding: 10px;
-} 
-
-.monument {
-  width: 250px;
-  height: 300px;
+    color: red;
 }
 
 .form {
@@ -23,7 +15,7 @@ p {
     color: black;
 }
 
-.text-center {
+.loginheader {
     text-align: center;
 }
 
@@ -38,7 +30,7 @@ p {
     border: 3px solid #f1f1f1;
 }
 
-.text {
+.inputtext {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -48,16 +40,18 @@ p {
 }
 
 .button {
-    background-color: #f68b1f;
-    color: white;
+    background-color: #fefefe;
+    color: #0c0000;
+    margin: 0.6rem 0.6rem 1rem 0;
+    border-radius: 0.3rem;
     padding: 1rem 2rem;
     border-color: transparent;
     cursor: pointer;
     width: auto;
-    margin: 0.6rem 0.6rem 1rem 0;
     font-weight: 700;
     text-align: center;
     display: inline-block;
+    font-size: 1.3rem;
 }
 
 .button:hover {
@@ -67,34 +61,32 @@ p {
 .button-border {
     line-height: 1;
     outline: none;
-    font-family: Source Sans Pro; 
-
+    font-family: Source Sans Pro;
 }
 
-.val_error {
-   color: red;
-   text-align:center;
+.error_message {
+    color: red;
+    text-align: center;
 }
 
 .time {
-  font-weight: bold;
-  color: black;
-  float: right;
-  padding: 10px 15px 9px 15px !important;
+    font-weight: bold;
+    color: black;
+    float: right;
+    padding: 10px 15px 9px 15px !important;
 }
 
 .welcome {
-  display: none;
-  padding: 1em;
-  background-color: #e7f4e4;
-  
+    display: none;
+    padding: 1em;
+    background-color: #e7f4e4;
 }
 
-.center {
-  text-align:center;
-  font-weight: 700;
-  color: black;
-  font-size: 4rem;
-  margin-top: .3rem;
-  margin-bottom: .3rem;
+.welcomeheader {
+    text-align: center;
+    font-weight: 700;
+    color: black;
+    font-size: 4rem;
+    margin-top: .3rem;
+    margin-bottom: .3rem;
 }

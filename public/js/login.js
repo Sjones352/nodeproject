@@ -1,6 +1,6 @@
 'use strict';
 
-function setViewTime() {
+function updateTimeInView() {
   var now = new Date();
   var time = now.toLocaleTimeString();
   $('#time').html('Welcome, it is now ' + time);
@@ -10,30 +10,32 @@ function validateLoginForm() {
   var username = $('#username').val();
   var password = $('#password').val();
 
+  var isValid = true;
+
+  $('#password_error').text('');
+  $('#username_error').text('');
+
   if (username === '') {
     $('#username').css('border', '1px solid red');
     $('#username_error').text('username is required');
     $('#username').focus();
-    return false;
-  } else {
-    $('#username_error').text('');
-  }
+    isValid = false;
+  } 
 
   if (password === '') {
     $('#password').css('border', '1px solid red');
     $('#password_error').text('password is required');
     $('#password').focus();
-    return false;
-  } else {
-    $('#password_error').text('');
+    isValid = false;
   }
+
+  return isValid;
 }
 
 function loginToAccount() {
   var username = $('#username').val();
   var password = $('#password').val();
 
-  if (username && password) {
     $.ajax({
       url: 'js/credentials.json',
       dataType: 'json',
@@ -53,18 +55,20 @@ function loginToAccount() {
         });
       }
     });
-  }
 }
 
 
 $(document).ready(function() {
-  setInterval(setViewTime, 1000);
+  setInterval(updateTimeInView, 1000);
 
   $('#loginform').submit(function(evt) {
     evt.preventDefault();
-    validateLoginForm()
+    if(!validateLoginForm()) {
+      return false;
+    }
+    
     loginToAccount();
-
+    return true;
   });
 
   $('#logout').click(function() {

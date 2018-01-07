@@ -10,20 +10,19 @@
 </head>
 
 <body>
-    <div id='city' class="city">
         <div id='time' class='time'></div>
-        <div id='content' class="container ">
-            <h1 class="text-center">Login</h1>
+        <div id='content' class="container">
+            <h1 class="loginheader">Login</h1>
             <form name="loginForm" class='form' id="loginform">
                 <div>
                     <label><b>Username</b></label>
-                    <input class="text" id="username" name="username" placeholder="Username">
-                    <div id="username_error" class="val_error"></div>
+                    <input class="inputtext" id="username" name="username" placeholder="Username">
+                    <div id="username_error" class="error_message"></div>
                 </div>
                 <div>
                     <label><b>Password</b></label>
-                    <input class="text" id="password" name="password" placeholder="Password">
-                    <div id="password_error" class="val_error"></div>
+                    <input class="inputtext" id="password" name="password" placeholder="Password">
+                    <div id="password_error" class="error_message"></div>
                 </div>
                 <div>
                     <button class="button button-border" id="login" type="submit">Login</button>
@@ -32,9 +31,8 @@
             </form>
         </div>
         <div id='welcome' class="welcome">
-            <h3 class="center">Welcome Sandra</h3>
+            <h3 class="welcomeheader">Welcome Sandra</h3>
             <button id="logout" type="submit" name="button" class='button button-border'>Logout</button>
         </div>
-    </div>
 </body>
 </html>
